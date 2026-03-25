@@ -1,0 +1,29 @@
+.container {
+  /* styles for Header */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  background-color: rgb(186, 118, 250);
+}
+
+.headerWrapper {
+  display: flex;
+  width: 1280px;
+  margin: 0 auto;
+  padding: 0 32px;
+  justify-content: space-between;
+}
+
+.navList {
+  display: flex;
+  gap: 24px;
+}
+
+.sortContainer {
+  display: flex;
+  gap: 16px;
+}

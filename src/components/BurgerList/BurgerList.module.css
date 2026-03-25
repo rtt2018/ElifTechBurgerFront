@@ -1,0 +1,22 @@
+.container {
+  /* styles for FloverList */
+  /* flex: auto; */
+  display: flex;
+  max-width: 1000px;
+  flex-direction: column;
+}
+
+.wrapper {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.burgersList {
+  flex: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}

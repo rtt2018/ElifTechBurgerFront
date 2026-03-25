@@ -1,0 +1,23 @@
+.loadMoreBtn {
+  border: 1px solid var(--button);
+  border-radius: 12px;
+  /* padding-block: 12px; */
+  /* padding-inline: 51px; */
+  width: 156px;
+  height: 44px;
+  background-color: transparent;
+  color: var(--main);
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.25;
+  transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  margin: 0 auto;
+  border: 1px solid #000000;
+  cursor: pointer;
+}
+
+.loadMoreBtn:hover {
+  border: 1px solid #000000;
+  background-color: transparent;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+}

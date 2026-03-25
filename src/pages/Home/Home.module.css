@@ -1,3 +1,7 @@
 .container {
-  /* styles for Home */
+  padding-top: 64px;
+  width: 1200px;
+  display: flex;
+  overflow: hidden;
+  height: 90vh;
 }

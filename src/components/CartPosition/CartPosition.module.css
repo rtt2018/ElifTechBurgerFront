@@ -1,0 +1,71 @@
+.container {
+  /* styles for CartPosition */
+  width: 100%;
+  height: 150px;
+  border: 1px solid #000;
+  border-radius: 12px;
+  box-sizing: border-box;
+}
+
+.wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  box-sizing: border-box;
+  gap: 8px;
+  justify-content: space-between;
+}
+
+.thumb {
+  width: 150px;
+  height: 120px;
+  overflow: hidden;
+  box-sizing: border-box;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.burgerImage {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.imgnameWrapper {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.buttonWrapper {
+  display: flex;
+  gap: 8px;
+}
+
+.amountInput {
+  width: 50px;
+  text-align: center;
+  /* -webkit-appearance: none; */
+  /* -moz-appearance: textfield; */
+}
+
+.positionButton {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+}
+
+.trashIcon {
+  width: 24px;
+  height: 24px;
+}
+
+.headWrapper {
+  text-align: left;
+}
