@@ -11,8 +11,8 @@ export default function Orders() {
       <div>
         {orders.length > 0 ? (
           <ul>
-            {orders.map((order) => (
-              <OrderItem key={order._id} order={order} />
+            {orders.map((orderItem) => (
+              <OrderItem key={orderItem._id} order={orderItem} />
             ))}
           </ul>
         ) : (

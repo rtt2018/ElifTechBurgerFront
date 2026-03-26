@@ -109,3 +109,14 @@ export type GetOrdersParams = {
   patch: string;
   searchParams: string | URLSearchParams;
 };
+
+export type ShopsName = {
+  _id?: string;
+  name: string;
+};
+
+export type ShopsInitState = {
+  shops: ShopsName[];
+  isLoading: boolean;
+  isError: boolean;
+};

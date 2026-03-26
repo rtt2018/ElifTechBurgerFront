@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import styles from "./ShopList.module.css";
 import {
   getIsLoading,
@@ -7,16 +7,17 @@ import {
 import { Link } from "react-router";
 import { getShopsNames } from "../../redux/shops/operations";
 import { useEffect } from "react";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 
 export default function ShopList() {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(getShopsNames());
   }, [dispatch]);
 
   const isLoading = useSelector(getIsLoading);
-  const shops = useSelector(getShopsNameSelector);
+  const shops = useAppSelector(getShopsNameSelector);
 
   return (
     <div className={styles.container}>

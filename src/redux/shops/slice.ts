@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { getShopsNames } from "./operations";
-
-const initialState = {
+import type { ShopsInitState } from "../../types/burger";
+const initialState: ShopsInitState = {
   shops: [],
   isLoading: false,
   isError: false,
