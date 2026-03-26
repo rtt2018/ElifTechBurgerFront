@@ -14,6 +14,30 @@ export type Burger = {
   shopName: string;
 };
 
+export type BurgerState = {
+  hits: Burger[];
+  page: string | number;
+  perPage: string | number;
+  totalPages: string | number;
+  hasPreviousPage: boolean;
+  hasNextPage: boolean;
+  totalItems: string | number;
+  sortBy: string | null;
+  sortOrder: string | null;
+  isLoading: boolean;
+  isError: boolean;
+};
+
+export type GetBurgersResponse = {
+  hits: Burger[];
+  page: number;
+  perPage: number;
+  totalPages: number;
+  hasPreviousPage: boolean;
+  hasNextPage: boolean;
+  totalItems: number;
+};
+
 export type UserState = {
   user: {
     name: string | null;
@@ -77,6 +101,11 @@ export type FormValues = {
 };
 
 export type GetBurgersParams = {
+  patch: string;
+  searchParams: string | URLSearchParams;
+};
+
+export type GetOrdersParams = {
   patch: string;
   searchParams: string | URLSearchParams;
 };

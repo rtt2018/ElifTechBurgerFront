@@ -1,7 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { getBurgers } from "./operations";
+import type { BurgerState } from "../../types/burger";
 
-const initialState = {
+const initialState: BurgerState = {
   hits: [],
   page: 1,
   perPage: 12,

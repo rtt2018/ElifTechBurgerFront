@@ -1,10 +1,10 @@
 import { AxiosError } from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import type { Burger, GetBurgersParams } from "../../types/burger";
+import type { GetBurgersParams, GetBurgersResponse } from "../../types/burger";
 import api from "../../api/api";
 
 export const getBurgers = createAsyncThunk<
-  Burger[],
+  GetBurgersResponse,
   GetBurgersParams,
   { rejectValue: string }
 >("burgers/getAllBurgers", async ({ patch, searchParams }, thunkAPI) => {
