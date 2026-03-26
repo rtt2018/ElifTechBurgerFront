@@ -1,7 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { getOrders } from "./operations";
+import type { OrdersState } from "../../types/burger";
 
-const initialState = {
+const initialState: OrdersState = {
   orders: [],
   isLoading: false,
   isError: false,
@@ -14,10 +15,13 @@ const ordersListSlice = createSlice({
   reducers: {
     addCreatedOrder(state, action) {
       state.orders.push(action.payload.order);
-      state.user = action.payload.user;
+      // state.user = action.payload.user;
     },
     setIsSendRequest(state, action) {
       state.isSendRequest = action.payload;
+    },
+    setOrders(state, action) { 
+      state.orders = action.payload
     },
   },
   extraReducers: (builder) => {
@@ -34,11 +38,12 @@ const ordersListSlice = createSlice({
         state.isLoading = false;
         state.isError = false;
         state.orders = action.payload.orders;
-        state.user = action.payload.user;
+        // state.user = action.payload.user;
       });
   },
 });
 
 export const ordersListReducer = ordersListSlice.reducer;
 
-export const { addCreatedOrder, setIsSendRequest } = ordersListSlice.actions;
+export const { addCreatedOrder, setIsSendRequest, setOrders } =
+  ordersListSlice.actions;

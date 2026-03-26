@@ -12,15 +12,13 @@ export default function Header() {
         <div className={styles.navList}>
           <NavLink to={"/"}>Shop</NavLink>
           <NavLink to={"/cart"}>{`Shopping Cart (${cart.length})`}</NavLink>
-          <NavLink to={"/orders"}>Orders</NavLink>
+          <NavLink to={"/orders"}>Orders Histoty</NavLink>
         </div>
         {location.pathname.includes("cart") ||
         location.pathname.includes("orders") ? null : (
           <div className={styles.sortContainer}>
-            <Link to={`${location.pathname}?sortBy=price`}>Sort by price</Link>
-            <Link to={`${location.pathname}?sortBy=productionDate`}>
-              Sort by date
-            </Link>
+            <Link to={`${location.pathname}?sortBy=price`}>Sort by price </Link>
+            <Link to={`${location.pathname}?sortBy=name`}>Sort by name</Link>
           </div>
         )}
       </div>

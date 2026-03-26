@@ -1,4 +1,4 @@
-import styles from "./FloverList.module.css";
+import styles from "./BurgerList.module.css";
 import BurgerCard from "../BurgerCard/BurgerCard";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
@@ -14,7 +14,7 @@ export default function BurgerList() {
   const dispatch = useDispatch();
   const { shopName } = useParams();
   const [searchParams] = useSearchParams();
-  const patch = shopName ? `/burgers/${shopName}` : "/burgers";
+  const patch: string = shopName ? `/burgers/${shopName}` : "/burgers";
 
   useEffect(() => {
     dispatch(

@@ -1,7 +1,4 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { userReducer } from "./user/slice.ts";
-import { burgersReducer } from "./burgers/slice.ts";
-import { orderReducer } from "./order/slice.ts";
 import {
   persistStore,
   persistReducer,
@@ -12,33 +9,48 @@ import {
   PURGE,
   REGISTER,
 } from "redux-persist";
-import storage from "redux-persist/lib/storage";
-import { shopsReducer } from "./shops/slice.ts";
-import { ordersListReducer } from "./orders/slice.ts";
-export type RootState = ReturnType<typeof store.getState>;
-export type AppDispatch = typeof store.dispatch;
-import type { UserState } from "../types/burger.ts";
+import createWebStorage from "redux-persist/es/storage/createWebStorage";
+
+import { userReducer } from "./user/slice";
+import { burgersReducer } from "./burgers/slice";
+import { orderReducer } from "./order/slice";
+import { shopsReducer } from "./shops/slice";
+import { ordersListReducer } from "./orders/slice";
+
+import type { OrderState, UserState } from "../types/burger";
+
+const createNoopStorage = () => ({
+  getItem: (_key: string) => Promise.resolve(null),
+  setItem: (_key: string, value: string) => Promise.resolve(value),
+  removeItem: (_key: string) => Promise.resolve(),
+});
+
+const storage =
+  typeof window !== "undefined"
+    ? createWebStorage("local")
+    : createNoopStorage();
 
 const authPersistConfig = {
-  key: "user",
+  key: "burger-user",
   storage,
   whitelist: ["email", "name"],
 };
 
 const cartPersistConfig = {
-  key: "order",
+  key: "burger-order",
   storage,
-  // whitelist: ["cart, totalPrice"],
+  whitelist: ["cart", "totalPrice"],
 };
 
 export const store = configureStore({
   reducer: {
     user: persistReducer<UserState>(authPersistConfig, userReducer),
     burgers: burgersReducer,
-    order: persistReducer(cartPersistConfig, orderReducer),
+    order: persistReducer<OrderState>(cartPersistConfig, orderReducer),
     shops: shopsReducer,
     orders: ordersListReducer,
   },
+
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
@@ -48,3 +60,6 @@ export const store = configureStore({
 });
 
 export const persistor = persistStore(store);
+
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;

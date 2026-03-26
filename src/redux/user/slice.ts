@@ -17,8 +17,12 @@ const userSlice = createSlice({
     setToken(state, action) {
       state.token = action.payload;
     },
+    setUser(state, action) {
+      state.user = action.payload;
+    },
   },
   // extraReducers: (builder) => builder.addCase({}),
 });
 
 export const userReducer = userSlice.reducer;
+export const { setToken, setUser } = userSlice.actions;

@@ -1,4 +1,4 @@
-import styles from "./Cart.module.css";
+import styles from "./AuthPage.module.css";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useSelector } from "react-redux";
 import * as Yup from "yup";

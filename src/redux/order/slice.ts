@@ -1,11 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
-import type { Burger } from "../../types/burger";
+import type { Burger, OrderState } from "../../types/burger";
+import { addOrder } from "./operations";
 
-const initialState = {
+const initialState: OrderState = {
   cart: [],
   totalPrice: 0,
   status: "creating",
-  creadetAt: null,
+  createdAt: null,
+  isLoading: false,
 };
 
 const orderSlice = createSlice({
@@ -44,7 +46,7 @@ const orderSlice = createSlice({
     clearCart(state) {
       state.cart = [];
       state.totalPrice = 0;
-      state.creadetAt = null;
+      state.createdAt = null;
     },
     upPositionCount(state, action) {
       state.cart = state.cart.map((item) =>
@@ -70,6 +72,11 @@ const orderSlice = createSlice({
         return sum + Number(item.burger.price) * Number(item.amount);
       }, 0);
     },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(addOrder.fulfilled, (state) => {
+      state.isLoading = false;
+    });
   },
 });
 

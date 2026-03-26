@@ -1,8 +1,8 @@
 export type User = {
   email: string;
-  name: string;
-  password: string;
-  phone: string;
+  name?: string;
+  password?: string;
+  phone?: string;
 };
 
 export type Burger = {
@@ -26,4 +26,57 @@ export type UserState = {
   error: unknown;
   token: string | null;
   isRefreshing: boolean;
+};
+
+export type OrderStatus =
+  | "creating"
+  | "pending"
+  | "paid"
+  | "shipped"
+  | "completed"
+  | "cancelled";
+
+export type OrderState = {
+  cart: CartItem[];
+  totalPrice: number;
+  status: OrderStatus;
+  createdAt: string | null;
+  isLoading: boolean;
+};
+
+export type CartItem = {
+  _id?: string;
+  burger: Burger;
+  amount: number;
+};
+
+export type Order = {
+  _id: string;
+  position: {
+    burger: Burger;
+    price: number;
+    amount: number;
+  }[];
+  totalPrice: number;
+  status: OrderStatus;
+  createdAt: string;
+};
+
+export type OrdersState = {
+  orders: Order[];
+  isLoading: boolean;
+  isError: boolean;
+  isSendRequest: boolean;
+};
+
+export type FormValues = {
+  name: string;
+  email: string;
+  phone: string;
+  address: string;
+};
+
+export type GetBurgersParams = {
+  patch: string;
+  searchParams: string | URLSearchParams;
 };

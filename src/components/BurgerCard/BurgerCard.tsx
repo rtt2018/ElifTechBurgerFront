@@ -27,6 +27,11 @@ export default function BurgerCard({ burger }: { burger: Burger }) {
               className={styles.burgerImage}
               src={burger.image}
               alt={burger.name}
+              onError={(e) => {
+                const img = e.currentTarget;
+                img.onerror = null;
+                img.src = "/food.jpg";
+              }}
             />
           </div>
           <h3 className={styles.burgerHeader}>{burger.name}</h3>
