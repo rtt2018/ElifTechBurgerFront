@@ -51,9 +51,11 @@ const burgersSlice = createSlice({
         } = action.payload;
 
         if (page > 1) {
-          const map = new Map([
-            ...(state.hits || []).map((item) => [item._id, item]),
-            ...(hits || []).map((item) => [item._id, item]),
+          const map = new Map<string, (typeof hits)[number]>([
+            ...state.hits.map(
+              (item) => [item._id!, item] as [string, typeof item],
+            ),
+            ...hits.map((item) => [item._id!, item] as [string, typeof item]),
           ]);
 
           state.hits = Array.from(map.values());

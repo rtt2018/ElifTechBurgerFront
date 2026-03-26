@@ -20,8 +20,8 @@ const ordersListSlice = createSlice({
     setIsSendRequest(state, action) {
       state.isSendRequest = action.payload;
     },
-    setOrders(state, action) { 
-      state.orders = action.payload
+    setOrders(state, action) {
+      state.orders = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -37,7 +37,7 @@ const ordersListSlice = createSlice({
       .addCase(getOrders.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isError = false;
-        state.orders = action.payload.orders;
+        state.orders = action.payload;
         // state.user = action.payload.user;
       });
   },

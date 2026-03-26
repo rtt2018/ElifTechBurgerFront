@@ -6,8 +6,9 @@ import {
   downPositionCount,
   upPositionCount,
 } from "../../redux/order/slice.ts";
+import type { CartItem } from "../../types/burger.ts";
 
-export default function CartPosition({ item }) {
+export default function CartPosition({ item }: { item: CartItem }) {
   const dispatch = useDispatch();
 
   const amountChange = () => {};

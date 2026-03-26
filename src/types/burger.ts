@@ -16,12 +16,12 @@ export type Burger = {
 
 export type BurgerState = {
   hits: Burger[];
-  page: string | number;
-  perPage: string | number;
-  totalPages: string | number;
+  page: number;
+  perPage: number;
+  totalPages: number;
   hasPreviousPage: boolean;
   hasNextPage: boolean;
-  totalItems: string | number;
+  totalItems: number;
   sortBy: string | null;
   sortOrder: string | null;
   isLoading: boolean;

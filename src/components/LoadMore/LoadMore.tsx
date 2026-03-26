@@ -13,16 +13,20 @@ export default function LoadMore() {
   const dispatch = useDispatch();
   const [, setSearchParams] = useSearchParams();
 
-  const currentPage: string = useSelector(getPage);
+  const currentPage = useSelector(getPage);
   const hasNextPage: boolean = useSelector(getHasNextPage);
   const loading: boolean = useSelector(getIsLoading);
-  const perPage: string = useSelector(getPerPage);
+  const perPage = useSelector(getPerPage);
 
   const handleLoadMore = () => {
     const nextPage = (currentPage ?? 1) + 1;
     dispatch(setPaginationParams({ page: nextPage, perPage }));
     setSearchParams((prevParams) => {
-      return { ...Object.fromEntries(prevParams), page: nextPage, perPage };
+      return {
+        ...Object.fromEntries(prevParams),
+        page: String(nextPage),
+        perPage: String(perPage),
+      };
     });
   };
 
