@@ -33,8 +33,13 @@ export default function CartPosition({ item }: { item: CartItem }) {
           <div className={styles.thumb}>
             <img
               src={item.burger.image}
-              alt=""
+              alt={item.burger.description}
               className={styles.burgerImage}
+              onError={(e) => {
+                const img = e.currentTarget;
+                img.onerror = null;
+                img.src = "/food.jpg";
+              }}
             />
           </div>
           <div className={styles.headWrapper}>
