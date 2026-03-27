@@ -7,14 +7,18 @@ export const getOrders = createAsyncThunk<
   Order[],
   GetOrdersParams,
   { rejectValue: string }
->("orders/getAllOrders", async ({ patch, searchParams }, thunkAPI) => {
+>("orders/getAllOrders", async ({ patch, user }, thunkAPI) => {
   try {
-    const response = await api.post(patch, { params: searchParams });
-    // console.log("🚀 ~ response:", response);
-    return response.data.data;
+    const response = await api.get(patch, { params: user });
+
+    return response.data.data.orders;
   } catch (error: unknown) {
     if (error instanceof AxiosError) {
-      return thunkAPI.rejectWithValue(error.response?.data || error.message);
+      return thunkAPI.rejectWithValue(
+        typeof error.response?.data === "string"
+          ? error.response.data
+          : error.message,
+      );
     }
 
     if (error instanceof Error) {

@@ -76,7 +76,7 @@ export type CartItem = {
 
 export type Order = {
   _id: string;
-  position: {
+  cart: {
     burger: Burger;
     price: number;
     amount: number;
@@ -107,7 +107,7 @@ export type GetBurgersParams = {
 
 export type GetOrdersParams = {
   patch: string;
-  searchParams: string | URLSearchParams;
+  user: LoginFormValues;
 };
 
 export type ShopsName = {
@@ -119,4 +119,9 @@ export type ShopsInitState = {
   shops: ShopsName[];
   isLoading: boolean;
   isError: boolean;
+};
+
+export type LoginFormValues = {
+  email: string;
+  phone: string;
 };

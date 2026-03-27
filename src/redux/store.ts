@@ -17,7 +17,7 @@ import { orderReducer } from "./order/slice";
 import { shopsReducer } from "./shops/slice";
 import { ordersListReducer } from "./orders/slice";
 
-import type { OrderState, UserState } from "../types/burger";
+import type { OrderState, UserState, OrdersState } from "../types/burger";
 
 const createNoopStorage = () => ({
   getItem: (_key: string) => Promise.resolve(null),
@@ -42,13 +42,18 @@ const cartPersistConfig = {
   whitelist: ["cart", "totalPrice"],
 };
 
+const ordersPersistConfig = {
+  key: "burger-orders",
+  storage,
+};
+
 export const store = configureStore({
   reducer: {
     user: persistReducer<UserState>(authPersistConfig, userReducer),
     burgers: burgersReducer,
     order: persistReducer<OrderState>(cartPersistConfig, orderReducer),
     shops: shopsReducer,
-    orders: ordersListReducer,
+    orders: persistReducer<OrdersState>(ordersPersistConfig, ordersListReducer),
   },
 
   middleware: (getDefaultMiddleware) =>

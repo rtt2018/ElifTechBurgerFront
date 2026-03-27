@@ -8,11 +8,18 @@ import api from "../../api/api";
 import { clearCart } from "../../redux/order/slice";
 import type { CartItem, FormValues } from "../../types/burger";
 import type { FormikHelpers } from "formik";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router";
+import { setOrders } from "../../redux/orders/slice";
+import { setUser } from "../../redux/user/slice";
 
 export default function Cart() {
   const dispatch = useDispatch();
   const cart = useSelector(getCart);
+  const navigate = useNavigate();
+
   const totalPrice = useSelector(getTotalPrice);
+  const PHONE_REGEX = /^\+?[0-9]{10,15}$/;
 
   const handleSubmit = async (
     values: FormValues,
@@ -41,11 +48,13 @@ export default function Cart() {
       totalPrice,
       address,
     };
-    console.log("🚀 ~ handleSubmit ~ orderResponse:", orderResponse);
-    const order = await api.post("/order", orderResponse);
-    console.log("🚀 ~ handleSubmit ~ order:", order);
+    const response = await api.post("/order", orderResponse);
+    dispatch(setUser(response.data.data.user));
+    dispatch(setOrders(response.data.data.orders));
     dispatch(clearCart());
     resetForm();
+    toast("Order created!");
+    navigate("/orders");
   };
 
   return (
@@ -63,7 +72,12 @@ export default function Cart() {
             email: Yup.string()
               .email("Invalid email")
               .required("Email is required"),
-            phone: Yup.string().required("Phone is required"),
+            phone: Yup.string()
+              .matches(
+                PHONE_REGEX,
+                "Phone must contain 10-15 digits and may start with +",
+              )
+              .required("Phone is required"),
             address: Yup.string().required("Address is required"),
           })}
           onSubmit={handleSubmit}

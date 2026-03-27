@@ -72,6 +72,12 @@ const orderSlice = createSlice({
         return sum + Number(item.burger.price) * Number(item.amount);
       }, 0);
     },
+    setCartFromOrder(state, action) {
+      state.cart = action.payload;
+      state.totalPrice = state.cart.reduce((sum, item) => {
+        return sum + Number(item.burger.price) * Number(item.amount);
+      }, 0);
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(addOrder.fulfilled, (state) => {
@@ -88,4 +94,5 @@ export const {
   upPositionCount,
   downPositionCount,
   deletePosition,
+  setCartFromOrder,
 } = orderSlice.actions;
