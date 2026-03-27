@@ -40,7 +40,7 @@ export default function OrderItem({
               className={styles.button}
               onClick={() => onOrderAgain(order._id)}
             >
-              Order again
+              Reorder
             </button>
           </div>
         </div>
