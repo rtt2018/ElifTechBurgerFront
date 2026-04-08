@@ -20,7 +20,7 @@ export default function OrderItem({
                   alt={cartPos.burger.description}
                   className={styles.orderImage}
                   onError={(e) => {
-                    e.currentTarget.src = "/fallback.jpg";
+                    e.currentTarget.src = "/food.jpg";
                   }}
                 />
                 <p className={styles.itemDescr}>{cartPos.burger.name}</p>
